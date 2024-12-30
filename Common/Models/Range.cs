@@ -7,7 +7,7 @@ public record Range<T> where T : INumber<T>
     public T Start { get; }
 
     public T End { get; }
-    
+
     public T Length { get; }
 
     public bool Ascending { get; }

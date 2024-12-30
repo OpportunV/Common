@@ -17,10 +17,7 @@ public static class EnumerableExt
             return list;
         }
 
-        foreach (var value in list)
-        {
-            Console.Write($"{value}{separator}");
-        }
+        Console.WriteLine(string.Join(separator, list));
 
         return list;
     }
