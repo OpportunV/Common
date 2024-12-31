@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+﻿using Common.Extensions;
 using Common.Helpers;
 
 namespace Common.Models;
@@ -7,8 +7,6 @@ public record GridPos2d(int Row, int Col)
 {
     public static readonly GridPos2d Zero = new(0, 0);
     public static readonly GridPos2d One = new(1, 1);
-
-    private static readonly Regex _regex = new(@".*?(-?\d+).*?(-?\d+).*");
 
     public IEnumerable<GridPos2d> AdjacentAll()
     {
@@ -82,13 +80,18 @@ public record GridPos2d(int Row, int Col)
 
     public override string ToString()
     {
-        return $"({Row},{Col})";
+        return $"({Row}, {Col})";
     }
 
     public static GridPos2d Parse(string gridPos2dString)
     {
-        var matches = _regex.Matches(gridPos2dString);
-        return new GridPos2d(int.Parse(matches[0].Groups[1].Value), int.Parse(matches[0].Groups[2].Value));
+        var numbers = gridPos2dString.GetNumbers<int>();
+        if (numbers.Count != 2)
+        {
+            throw new ArgumentException($"Invalid amount of values '{gridPos2dString}'");
+        }
+
+        return new GridPos2d(numbers[0], numbers[1]);
     }
 
     private IEnumerable<IEnumerable<GridPos2d>> Adjacent(int rows, int cols, int length,
