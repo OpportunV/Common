@@ -5,8 +5,25 @@ namespace Common.Models;
 
 public record GridPos2d(int Row, int Col)
 {
-    public static readonly GridPos2d Zero = new(0, 0);
-    public static readonly GridPos2d One = new(1, 1);
+    public static GridPos2d Zero { get; } = new(0, 0);
+
+    public static GridPos2d One { get; } = new(1, 1);
+
+    public static GridPos2d Right { get; } = new(0, 1);
+
+    public static GridPos2d Down { get; } = new(1, 0);
+
+    public static GridPos2d Left { get; } = new(0, -1);
+
+    public static GridPos2d Up { get; } = new(-1, 0);
+
+    public static GridPos2d RightUp { get; } = Right + Up;
+
+    public static GridPos2d RightDown { get; } = Right + Down;
+
+    public static GridPos2d LeftUp { get; } = Left + Up;
+
+    public static GridPos2d LeftDown { get; } = Left + Down;
 
     public IEnumerable<GridPos2d> AdjacentAll()
     {

@@ -6,29 +6,29 @@ public static class Directions2d
 {
     public static readonly IReadOnlyList<GridPos2d> All =
     [
-        new(0, 1),
-        new(1, 1),
-        new(1, 0),
-        new(1, -1),
-        new(0, -1),
-        new(-1, -1),
-        new(-1, 0),
-        new(-1, 1)
+        GridPos2d.Right,
+        GridPos2d.RightDown,
+        GridPos2d.Down,
+        GridPos2d.LeftDown,
+        GridPos2d.Left,
+        GridPos2d.LeftUp,
+        GridPos2d.Up,
+        GridPos2d.RightUp
     ];
 
     public static readonly IReadOnlyList<GridPos2d> Diag =
     [
-        new(1, 1),
-        new(1, -1),
-        new(-1, -1),
-        new(-1, 1)
+        GridPos2d.RightDown,
+        GridPos2d.LeftDown,
+        GridPos2d.LeftUp,
+        GridPos2d.RightUp
     ];
 
     public static readonly IReadOnlyList<GridPos2d> Side =
     [
-        new(0, 1),
-        new(1, 0),
-        new(0, -1),
-        new(-1, 0)
+        GridPos2d.Right,
+        GridPos2d.Down,
+        GridPos2d.Left,
+        GridPos2d.Up
     ];
 }
