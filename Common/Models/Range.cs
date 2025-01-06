@@ -38,6 +38,11 @@ public record Range<T> where T : INumber<T>
         return Start < other.Start;
     }
 
+    public bool Intersects(Range<T> other)
+    {
+        return T.Max(Start, other.Start) < T.Min(End, other.End);
+    }
+
     public bool EndsBefore(Range<T> other)
     {
         return End < other.End;
