@@ -21,4 +21,23 @@ public static class EnumerableExt
 
         return list;
     }
+
+    public static IEnumerable<(T, T)> DoubleIteration<T>(this IEnumerable<T> enumerable) where T : IEquatable<T>
+    {
+        var array = enumerable as T[] ?? enumerable.ToArray();
+        for (var i = 0; i < array.Length; i++)
+        {
+            var first = array[i];
+            for (var j = 0; j < array.Length; j++)
+            {
+                if (i == j)
+                {
+                    continue;
+                }
+
+                var second = array[j];
+                yield return (first, second);
+            }
+        }
+    }
 }
