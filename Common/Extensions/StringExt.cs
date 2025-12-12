@@ -18,4 +18,9 @@ public static class StringExt
     {
         return _words.Matches(input).Select(match => match.Value).ToList();
     }
+
+    public static string[][] GetSections(this string src)
+    {
+        return src.Split("\n\n").Select(section => section.Split("\n")).ToArray();
+    }
 }
