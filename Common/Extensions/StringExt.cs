@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Numerics;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Common.Extensions;
@@ -22,5 +23,18 @@ public static class StringExt
     public static string[][] GetSections(this string src)
     {
         return src.Split("\n\n").Select(section => section.Split("\n")).ToArray();
+    }
+
+    public static string GetHexBits(this string src)
+    {
+        var binaryString = new StringBuilder();
+        var bytes = Convert.FromHexString(src);
+        
+        foreach (var @byte in bytes)
+        {
+            binaryString.Append(Convert.ToString(@byte, 2).PadLeft(8, '0'));
+        }
+
+        return binaryString.ToString();
     }
 }
