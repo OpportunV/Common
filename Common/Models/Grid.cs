@@ -150,7 +150,7 @@ public class Grid<T> : IGrid
     {
         var grid = new Grid<T>(Rows, Cols, default!);
 
-        for (int i = 0; i < Rows; i++)
+        for (var i = 0; i < Rows; i++)
         {
             for (var j = 0; j < Cols; j++)
             {
@@ -165,7 +165,7 @@ public class Grid<T> : IGrid
     {
         var grid = new Grid<T>(Rows, Cols, default!);
 
-        for (int i = 0; i < Rows; i++)
+        for (var i = 0; i < Rows; i++)
         {
             for (var j = 0; j < Cols; j++)
             {
