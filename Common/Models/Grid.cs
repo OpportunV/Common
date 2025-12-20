@@ -116,6 +116,66 @@ public class Grid<T> : IGrid
         return Adjacent(pos.AdjacentAll());
     }
 
+    public Grid<T> RotateClockwise()
+    {
+        var grid = new Grid<T>(Cols, Rows, default!);
+        for (var row = 0; row < Rows; row++)
+        {
+            for (var col = 0; col < Cols; col++)
+            {
+                var newCol = Rows - 1 - row;
+                grid[col, newCol] = this[row, col];
+            }
+        }
+
+        return grid;
+    }
+
+    public Grid<T> RotateCounterClockwise()
+    {
+        var grid = new Grid<T>(Cols, Rows, default!);
+        for (var row = 0; row < Rows; row++)
+        {
+            for (var col = 0; col < Cols; col++)
+            {
+                var newRow = Cols - 1 - col;
+                grid[newRow, row] = this[row, col];
+            }
+        }
+
+        return grid;
+    }
+
+    public Grid<T> FlipVertically()
+    {
+        var grid = new Grid<T>(Rows, Cols, default!);
+
+        for (int i = 0; i < Rows; i++)
+        {
+            for (var j = 0; j < Cols; j++)
+            {
+                grid[i, j] = this[Rows - 1 - i, j];
+            }
+        }
+
+        return grid;
+    }
+
+    public Grid<T> FlipHorizontally()
+    {
+        var grid = new Grid<T>(Rows, Cols, default!);
+
+        for (int i = 0; i < Rows; i++)
+        {
+            for (var j = 0; j < Cols; j++)
+            {
+                grid[i, j] = this[i, Cols - 1 - j];
+            }
+        }
+
+        return grid;
+    }
+
     public string ToString(Func<T, object>? itemFormatter)
     {
         var res = new StringBuilder();
